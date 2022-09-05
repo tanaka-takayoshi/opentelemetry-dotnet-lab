@@ -1,0 +1,28 @@
+﻿receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+exporters:
+  otlp:
+    endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT}
+    headers:
+      api-key: ${NEW_RELIC_LICENSE_KEY}
+  logging:
+    loglevel: debug
+processors:
+  batch:
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      exporters: [logging,otlp]
+      processors: [batch]
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging,otlp]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging,otlp]
