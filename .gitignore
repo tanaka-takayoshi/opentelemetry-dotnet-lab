@@ -351,3 +351,4 @@ MigrationBackup/
 
 # SQLite DB files
 data.db*
+examples/aspnetcore/OpenTelemetryLabs.ASPNetCoreWeb/.env
